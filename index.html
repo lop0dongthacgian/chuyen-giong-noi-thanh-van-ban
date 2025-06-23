@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chuyển Giọng Nói Thành Văn Bản Tiếng Việt - Phiên bản Nâng cao</title>
+    <title>Chuyển Giọng Nói Thành Văn Bản Tiếng Việt</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -28,7 +28,7 @@
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
             width: 100%;
-            max-width: 900px;
+            max-width: 800px;
             overflow: hidden;
             animation: fadeIn 0.8s ease-out;
         }
@@ -172,46 +172,6 @@
             100% { transform: scale(1.3); opacity: 0; }
         }
         
-        .recording-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .control-btn {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .control-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-pause {
-            background: linear-gradient(to right, #f39c12, #e67e22);
-            color: white;
-        }
-        
-        .btn-auto-mode {
-            background: linear-gradient(to right, #8e44ad, #9b59b6);
-            color: white;
-        }
-        
-        .btn-auto-mode.active {
-            background: linear-gradient(to right, #27ae60, #2ecc71);
-        }
-        
         .status {
             text-align: center;
             margin-top: 15px;
@@ -260,20 +220,11 @@
             font-weight: 600;
             color: #2c3e50;
             font-size: 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .word-count {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            font-weight: normal;
         }
         
         .text-output {
             width: 100%;
-            height: 300px;
+            height: 200px;
             border: 2px solid #3498db;
             border-radius: 12px;
             padding: 18px;
@@ -283,7 +234,6 @@
             background-color: #f8f9fa;
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
             line-height: 1.6;
-            max-height: 500px;
         }
         
         .text-output:focus {
@@ -406,13 +356,13 @@
             color: #2c3e50;
             margin-bottom: 10px;
             font-size: 1.1rem;
-            cursor: pointer;
+            cursor: pointer; /* Biến con trỏ thành bàn tay khi di chuột qua tiêu đề */
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Canh giữa tiêu đề */
             gap: 10px;
-            font-weight: bold;
-            color: #1a2a6c;
+            font-weight: bold; /* In đậm tiêu đề */
+            color: #1a2a6c; /* Màu sắc cho tiêu đề */
             text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
@@ -421,37 +371,37 @@
         }
 
         .info-box.active h3 i {
-            transform: rotate(90deg);
+            transform: rotate(90deg); /* Xoay icon khi mở rộng */
         }
         
         .info-box ul {
             padding-left: 20px;
-            margin-bottom: 0;
-            list-style: none;
+            margin-bottom: 0; /* Remove bottom margin */
+            list-style: none; /* Remove default bullet points */
             transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
-            max-height: 0;
+            max-height: 0; /* Thu gọn nội dung */
             overflow: hidden;
             opacity: 0;
         }
 
         .info-box.active ul {
-            max-height: 1000px;
+            max-height: 1000px; /* Tăng chiều cao tối đa để chứa đủ nội dung */
             opacity: 1;
-            margin-top: 10px;
+            margin-top: 10px; /* Add margin when expanded */
         }
         
         .info-box li {
             margin-bottom: 8px;
-            color: #2980b9;
+            color: #2980b9; /* Màu sắc cho nội dung hướng dẫn */
             position: relative;
-            padding-left: 25px;
+            padding-left: 25px; /* Khoảng cách cho icon */
         }
 
         .info-box li i {
             position: absolute;
             left: 0;
             top: 4px;
-            color: #27ae60;
+            color: #27ae60; /* Màu sắc cho icon check */
         }
         
         .duplicate-warning {
@@ -464,96 +414,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-        
-        .settings-panel {
-            background-color: #ecf0f1;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #bdc3c7;
-            transition: all 0.3s ease;
-            max-height: 60px;
-            overflow: hidden;
-        }
-        
-        .settings-panel.expanded {
-            max-height: 500px;
-        }
-        
-        .settings-panel h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-        
-        .setting-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        
-        .setting-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .setting-label {
-            font-weight: 500;
-            color: #34495e;
-        }
-        
-        .setting-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .toggle-switch {
-            position: relative;
-            width: 50px;
-            height: 24px;
-            background-color: #bdc3c7;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .toggle-switch.active {
-            background-color: #27ae60;
-        }
-        
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 20px;
-            height: 20px;
-            background-color: white;
-            border-radius: 50%;
-            transition: transform 0.3s;
-        }
-        
-        .toggle-switch.active::after {
-            transform: translateX(26px);
-        }
-        
-        .select-control {
-            padding: 8px 12px;
-            border: 1px solid #bdc3c7;
-            border-radius: 6px;
-            background-color: white;
-            color: #2c3e50;
-            cursor: pointer;
         }
         
         @keyframes pulse {
@@ -611,23 +471,8 @@
             }
             
             .text-output {
-                height: 250px;
+                height: 180px;
                 font-size: 1.1rem;
-            }
-            
-            .recording-controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .control-btn {
-                width: 200px;
-            }
-            
-            .setting-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
             }
         }
     </style>
@@ -635,43 +480,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1><i class="fas fa-microphone-alt"></i> Chuyển Giọng Nói Thành Văn Bản - Nâng cao</h1>
-            <p>Phiên bản tối ưu với khả năng xử lý văn bản dài và nhiều tính năng nâng cao</p>
+            <h1><i class="fas fa-microphone-alt"></i> Chuyển Giọng Nói Thành Văn Bản</h1>
+            <p>Nhấn nút Micro để mở ghi âm - Đọc xong nhấn để tắt</p>
         </div>
         
         <div class="content">
-            <div class="settings-panel" id="settingsPanel">
-                <h3 id="settingsToggle"><i class="fas fa-cog"></i> Cài đặt nâng cao <i class="fas fa-chevron-down"></i></h3>
-                <div class="setting-item">
-                    <span class="setting-label">Chế độ ghi âm liên tục</span>
-                    <div class="setting-control">
-                        <div class="toggle-switch active" id="continuousToggle"></div>
-                    </div>
-                </div>
-                <div class="setting-item">
-                    <span class="setting-label">Tự động thêm dấu câu</span>
-                    <div class="setting-control">
-                        <div class="toggle-switch active" id="punctuationToggle"></div>
-                    </div>
-                </div>
-                <div class="setting-item">
-                    <span class="setting-label">Độ nhạy microphone</span>
-                    <div class="setting-control">
-                        <select class="select-control" id="sensitivitySelect">
-                            <option value="high">Cao</option>
-                            <option value="medium" selected>Trung bình</option>
-                            <option value="low">Thấp</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="setting-item">
-                    <span class="setting-label">Tự động lưu</span>
-                    <div class="setting-control">
-                        <div class="toggle-switch" id="autoSaveToggle"></div>
-                    </div>
-                </div>
-            </div>
-            
             <div class="recorder-container">
                 <div class="sound-wave"></div>
                 <div class="sound-wave"></div>
@@ -681,41 +494,29 @@
                 </button>
             </div>
             
-            <div class="recording-controls">
-                <button class="control-btn btn-pause" id="pauseBtn" style="display: none;">
-                    <i class="fas fa-pause"></i> Tạm dừng
-                </button>
-                <button class="control-btn btn-auto-mode active" id="autoModeBtn">
-                    <i class="fas fa-magic"></i> Chế độ thông minh
-                </button>
-            </div>
-            
             <div class="status" id="status">
-                Sẵn sàng ghi âm với chế độ nâng cao...
+                Sẵn sàng ghi âm...
             </div>
             
             <div class="text-container">
-                <label for="textOutput">
-                    <span><i class="fas fa-pencil-alt"></i> Chỉnh sửa văn bản (nếu cần):</span>
-                    <span class="word-count" id="wordCount">0 từ, 0 ký tự</span>
-                </label>
-                <textarea id="textOutput" class="text-output" placeholder="Văn bản chuyển đổi sẽ hiển thị ở đây... Phiên bản này hỗ trợ văn bản dài hơn và nhiều tính năng nâng cao."></textarea>
+                <label for="textOutput"><i class="fas fa-pencil-alt"></i> Văn bản chuyển đổi:</label>
+                <textarea id="textOutput" class="text-output" placeholder="Văn bản chuyển đổi sẽ hiển thị ở đây..."></textarea>
                 
-                <div class="duplicate-warning" id="duplicateWarning" style="display: none;">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Chế độ thông minh đang hoạt động - Tự động tối ưu hóa văn bản</span>
+                <div class="duplicate-warning" id="duplicateWarning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Ứng dụng đã được cải tiến để giảm thiểu tình trạng lặp văn bản</span>
                 </div>
             </div>
             
             <div class="action-buttons">
                 <button class="btn btn-copy" id="copyBtn">
-                    <i class="fas fa-copy"></i> Sao chép văn bản
-                </button>
-                <button class="btn btn-share" id="shareBtn">
-                    <i class="fas fa-share-alt"></i> Chia sẻ văn bản
+                    <i class="fas fa-copy"></i> Copy văn bản
                 </button>
                 <button class="btn btn-download" id="downloadBtn">
                     <i class="fas fa-download"></i> Tạo file .txt
+                </button>
+                <button class="btn btn-share" id="shareBtn">
+                    <i class="fas fa-share-alt"></i> Chia sẻ văn bản
                 </button>
                 <button class="btn btn-clear" id="clearBtn">
                     <i class="fas fa-trash-alt"></i> Xóa văn bản
@@ -723,22 +524,22 @@
             </div>
             
             <div class="info-box" id="infoBox">
-                <h3><i class="fas fa-chevron-right"></i> Hướng dẫn sử dụng phiên bản nâng cao</h3>
+                <h3><i class="fas fa-chevron-right"></i> Hướng dẫn sử dụng</h3>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>Ghi âm liên tục:</strong> Ứng dụng sẽ tự động tiếp tục ghi âm mà không cần nhấn lại nút.</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Xử lý văn bản dài:</strong> Hỗ trợ xử lý văn bản lên tới hàng ngàn ký tự một cách mượt mà.</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Tự động thêm dấu câu:</strong> Ứng dụng thông minh sẽ tự động thêm dấu câu phù hợp.</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Chế độ thông minh:</strong> Tự động tối ưu hóa và làm sạch văn bản, loại bỏ lặp từ.</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Đếm từ/ký tự:</strong> Theo dõi số lượng từ và ký tự trong thời gian thực.</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Tự động lưu:</strong> Tự động lưu văn bản vào bộ nhớ tạm để tránh mất dữ liệu.</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Cài đặt linh hoạt:</strong> Điều chỉnh độ nhạy microphone và các tùy chọn khác.</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Tối ưu hiệu suất:</strong> Xử lý nhanh hơn và ít tiêu tốn tài nguyên hơn.</li>
+                    <li><i class="fas fa-check-circle"></i> **Bắt đầu ghi âm:** Nhấn vào nút biểu tượng Micro lớn ở giữa để bắt đầu hoặc dừng ghi âm.</li>
+                    <li><i class="fas fa-check-circle"></i> **Cấp quyền Micro:** Nếu đây là lần đầu sử dụng, trình duyệt có thể yêu cầu cấp quyền truy cập micro. Vui lòng cho phép để ứng dụng hoạt động.</li>
+                    <li><i class="fas fa-check-circle"></i> **Nói rõ ràng:** Để đạt kết quả tốt nhất, hãy nói rõ ràng, chậm rãi và ở gần micro.</li>
+                    <li><i class="fas fa-check-circle"></i> **Sao chép văn bản:** Sau khi ghi âm, nhấn nút "Copy văn bản" để sao chép nội dung vào bộ nhớ tạm.</li>
+                    <li><i class="fas fa-check-circle"></i> **Tạo file .txt:** Nhấn nút "Tạo file .txt" để tải văn bản đã chuyển đổi xuống máy tính của bạn.</li>
+                    <li><i class="fas fa-check-circle"></i> **Chia sẻ văn bản:** Nhấn nút "Chia sẻ văn bản" để chia sẻ nội dung thông qua các ứng dụng khác (tùy thuộc vào thiết bị của bạn).</li>
+                    <li><i class="fas fa-check-circle"></i> **Xóa văn bản:** Nhấn nút "Xóa văn bản" để xóa toàn bộ nội dung trong ô văn bản.</li>
+                    <li><i class="fas fa-check-circle"></i> **Lưu ý trình duyệt:** Ứng dụng hoạt động tốt nhất và ổn định nhất trên trình duyệt Google Chrome.</li>
                 </ul>
             </div>
         </div>
         
         <div class="footer">
-            <p>Ứng dụng phiên bản nâng cao - Tối ưu cho văn bản dài và nhiều tính năng chuyên nghiệp</p>
+            <p>Ứng dụng sử dụng Web Speech API - Tương thích tốt nhất với trình duyệt Chrome</p>
             <p>© 2025 Tổ công nghệ số Trung Bình A3</p>
         </div>
     </div>
@@ -750,35 +551,12 @@
             const copyBtn = document.getElementById('copyBtn');
             const downloadBtn = document.getElementById('downloadBtn');
             const clearBtn = document.getElementById('clearBtn');
-            const shareBtn = document.getElementById('shareBtn');
             const status = document.getElementById('status');
             const soundWaves = document.querySelectorAll('.sound-wave');
             const duplicateWarning = document.getElementById('duplicateWarning');
-            const infoBox = document.getElementById('infoBox');
-            const infoBoxHeading = infoBox.querySelector('h3');
-            const wordCount = document.getElementById('wordCount');
-            const pauseBtn = document.getElementById('pauseBtn');
-            const autoModeBtn = document.getElementById('autoModeBtn');
-            const settingsPanel = document.getElementById('settingsPanel');
-            const settingsToggle = document.getElementById('settingsToggle');
+            const infoBox = document.getElementById('infoBox'); 
+            const infoBoxHeading = infoBox.querySelector('h3'); 
             
-            // Cài đặt nâng cao
-            const continuousToggle = document.getElementById('continuousToggle');
-            const punctuationToggle = document.getElementById('punctuationToggle');
-            const sensitivitySelect = document.getElementById('sensitivitySelect');
-            const autoSaveToggle = document.getElementById('autoSaveToggle');
-            
-            // Cấu hình
-            let config = {
-                continuous: true,
-                autoPunctuation: true,
-                sensitivity: 'medium',
-                autoSave: false,
-                smartMode: true,
-                maxResults: 100
-            };
-            
-            // Kiểm tra trình duyệt hỗ trợ Web Speech API
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             
             if (!SpeechRecognition) {
@@ -788,134 +566,15 @@
             }
             
             const recognition = new SpeechRecognition();
-            recognition.continuous = true;
-            recognition.interimResults = true;
-            recognition.lang = 'vi-VN';
-            recognition.maxAlternatives = 3;
+            recognition.continuous = true; 
+            recognition.interimResults = true; 
+            recognition.lang = 'vi-VN'; 
             
             let isRecording = false;
-            let isPaused = false;
             let ignoreOnend = false;
-            let recognitionStarted = false;
-            let fullTranscript = '';
-            let autoSaveInterval;
-            let restartTimeout;
-            let lastSavedText = '';
-            
-            // Cập nhật số từ và ký tự
-            function updateWordCount() {
-                const text = textOutput.value;
-                const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-                const chars = text.length;
-                wordCount.textContent = `${words} từ, ${chars} ký tự`;
-            }
-            
-            // Tự động lưu
-            function autoSave() {
-                if (config.autoSave && textOutput.value !== lastSavedText) {
-                    lastSavedText = textOutput.value;
-                    try {
-                        localStorage.setItem('speechToTextBackup', textOutput.value);
-                    } catch (e) {
-                        console.log('Không thể lưu tự động');
-                    }
-                }
-            }
-            
-            // Khôi phục văn bản từ bộ nhớ
-            function restoreText() {
-                try {
-                    const savedText = localStorage.getItem('speechToTextBackup');
-                    if (savedText) {
-                        textOutput.value = savedText;
-                        updateWordCount();
-                        lastSavedText = savedText;
-                    }
-                } catch (e) {
-                    console.log('Không thể khôi phục văn bản');
-                }
-            }
-            
-            // Khởi tạo cài đặt
-            function initSettings() {
-                // Khôi phục văn bản
-                restoreText();
-                
-                // Cài đặt toggle
-                continuousToggle.addEventListener('click', () => {
-                    continuousToggle.classList.toggle('active');
-                    config.continuous = continuousToggle.classList.contains('active');
-                    recognition.continuous = config.continuous;
-                });
-                
-                punctuationToggle.addEventListener('click', () => {
-                    punctuationToggle.classList.toggle('active');
-                    config.autoPunctuation = punctuationToggle.classList.contains('active');
-                });
-                
-                autoSaveToggle.addEventListener('click', () => {
-                    autoSaveToggle.classList.toggle('active');
-                    config.autoSave = autoSaveToggle.classList.contains('active');
-                    
-                    if (config.autoSave) {
-                        autoSaveInterval = setInterval(autoSave, 10000);
-                    } else {
-                        clearInterval(autoSaveInterval);
-                    }
-                });
-                
-                sensitivitySelect.addEventListener('change', (e) => {
-                    config.sensitivity = e.target.value;
-                });
-                
-                // Chế độ thông minh
-                autoModeBtn.addEventListener('click', () => {
-                    autoModeBtn.classList.toggle('active');
-                    config.smartMode = autoModeBtn.classList.contains('active');
-                    duplicateWarning.style.display = config.smartMode ? 'flex' : 'none';
-                });
-                
-                // Toggle settings panel
-                settingsToggle.addEventListener('click', () => {
-                    settingsPanel.classList.toggle('expanded');
-                    const icon = settingsToggle.querySelector('.fa-chevron-down');
-                    if (settingsPanel.classList.contains('expanded')) {
-                        icon.classList.remove('fa-chevron-down');
-                        icon.classList.add('fa-chevron-up');
-                    } else {
-                        icon.classList.remove('fa-chevron-up');
-                        icon.classList.add('fa-chevron-down');
-                    }
-                });
-            }
-            
-            // Xử lý chế độ thông minh
-            function processSmartMode(transcript) {
-                if (!config.smartMode) return transcript;
-                
-                // Loại bỏ từ trùng lặp liên tiếp
-                transcript = transcript.replace(/\b(\w+)\s+\1\b/gi, '$1');
-                
-                // Tự động thêm dấu câu
-                if (config.autoPunctuation) {
-                    // Thêm dấu chấm nếu kết thúc câu
-                    if (transcript.trim().length > 0 && 
-                        !/[.!?]$/.test(transcript.trim())) {
-                        transcript += '. ';
-                    }
-                    
-                    // Thêm dấu phẩy sau các từ nối
-                    const conjunctions = ['và', 'hoặc', 'nhưng', 'vì', 'nên', 'thì', 'là'];
-                    conjunctions.forEach(conj => {
-                        const regex = new RegExp(`\\b${conj}\\b`, 'gi');
-                        transcript = transcript.replace(regex, `, ${conj}`);
-                    });
-                }
-                
-                return transcript;
-            }
-            
-            // Kiểm tra quyền microphone
+            let finalTranscriptStore = ''; // Biến mới để lưu trữ văn bản cuối cùng được xác nhận
+
+            // Hàm kiểm tra quyền microphone
             function checkMicrophonePermission() {
                 if (!navigator.permissions) {
                     return;
@@ -952,106 +611,117 @@
                 }
             }
             
-            // Xử lý sự kiện khi nhấn nút micro
+            checkMicrophonePermission();
+            
+            textOutput.addEventListener('input', () => {
+                textOutput.scrollTop = textOutput.scrollHeight;
+            });
+            
             microphoneBtn.addEventListener('click', () => {
                 if (isRecording) {
-                    // Dừng ghi âm
                     ignoreOnend = true;
                     recognition.stop();
                     microphoneBtn.classList.remove('recording');
                     soundWaves.forEach(wave => wave.classList.remove('recording'));
-                    pauseBtn.style.display = 'none';
                     status.innerHTML = 'Đã dừng ghi âm. <span class="recording-status">Sẵn sàng ghi âm...</span>';
                     isRecording = false;
-                    recognitionStarted = false;
-                    
-                    // Xử lý văn bản cuối cùng
-                    fullTranscript = processSmartMode(fullTranscript);
-                    textOutput.value = fullTranscript;
-                    updateWordCount();
-textOutput.scrollTop = textOutput.scrollHeight;
-                    
-                    // Dừng tự động lưu nếu không cần
-                    if (!config.autoSave) {
-                        clearInterval(autoSaveInterval);
-                    }
+                    // Khi dừng, đảm bảo cập nhật finalTranscriptStore với giá trị hiện tại của textarea
+                    finalTranscriptStore = textOutput.value.trim(); 
                 } else {
-                    // Bắt đầu ghi âm
+                    // Khi bắt đầu một phiên mới, finalTranscriptStore sẽ giữ lại nội dung hiện có
+                    // Đảm bảo không có khoảng trắng thừa ở cuối nếu muốn nối tiếp
+                    finalTranscriptStore = textOutput.value.trim(); 
+                    if (finalTranscriptStore && !finalTranscriptStore.endsWith('.') && !finalTranscriptStore.endsWith('?') && !finalTranscriptStore.endsWith('!')) {
+                        finalTranscriptStore += '. '; // Thêm dấu chấm và khoảng trắng để kết thúc câu nếu cần
+                    } else if (finalTranscriptStore) {
+                        finalTranscriptStore += ' '; // Chỉ thêm khoảng trắng nếu đã có dấu câu
+                    }
+
                     try {
                         recognition.start();
                         ignoreOnend = false;
                         microphoneBtn.classList.add('recording');
                         soundWaves.forEach(wave => wave.classList.add('recording'));
-                        pauseBtn.style.display = 'flex';
                         status.innerHTML = '<span class="recording-status">Đang ghi âm... Hãy nói gì đó.</span>';
                         isRecording = true;
-                        recognitionStarted = true;
-                        isPaused = false;
-                        
-                        // Ẩn cảnh báo khi bắt đầu ghi âm
                         duplicateWarning.style.display = 'none';
-                        
-                        // Bắt đầu tự động lưu nếu cần
-                        if (config.autoSave) {
-                            autoSaveInterval = setInterval(autoSave, 10000);
-                        }
                     } catch (error) {
                         console.error('Lỗi khi bắt đầu recognition:', error);
                         status.innerHTML = '<span class="recording-status">Lỗi: Không thể bắt đầu ghi âm. Vui lòng kiểm tra microphone.</span>';
                         isRecording = false;
-                        recognitionStarted = false;
                         microphoneBtn.classList.remove('recording');
                         soundWaves.forEach(wave => wave.classList.remove('recording'));
                     }
                 }
             });
             
-            // Xử lý nút tạm dừng
-            pauseBtn.addEventListener('click', () => {
-                if (isPaused) {
-                    // Tiếp tục ghi âm
-                    recognition.start();
-                    isPaused = false;
-                    pauseBtn.innerHTML = '<i class="fas fa-pause"></i> Tạm dừng';
-                    status.innerHTML = '<span class="recording-status">Đang ghi âm... Hãy nói gì đó.</span>';
-                } else {
-                    // Tạm dừng ghi âm
-                    recognition.stop();
-                    isPaused = true;
-                    pauseBtn.innerHTML = '<i class="fas fa-play"></i> Tiếp tục';
-                    status.innerHTML = '<span class="recording-status">Đã tạm dừng ghi âm. Nhấn Tiếp tục để tiếp tục.</span>';
-                }
-            });
-            
-            // Xử lý kết quả nhận dạng giọng nói
+            // Cập nhật logic onresult để giảm lặp hiệu quả hơn
             recognition.onresult = (event) => {
                 let interimTranscript = '';
-                let finalTranscript = '';
-                
-                for (let i = event.resultIndex; i < event.results.length; i++) {
+                let newFinalSegment = '';
+
+                // Lấy tất cả các kết quả từ resultIndex đến cuối
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
                     const result = event.results[i];
-                    const transcript = result[0].transcript;
-                    
                     if (result.isFinal) {
-                        // Xử lý chế độ thông minh
-                        const processed = processSmartMode(transcript);
-                        finalTranscript += processed;
-                        if (!fullTranscript.endsWith(processed.trim())) {
-    fullTranscript += processed;
-}
+                        newFinalSegment += result[0].transcript;
                     } else {
-                        interimTranscript += transcript;
+                        interimTranscript += result[0].transcript;
                     }
                 }
+
+                // Nếu có phần final mới, thêm nó vào finalTranscriptStore
+                if (newFinalSegment) {
+                    // Xử lý các trường hợp khoảng trắng và dấu câu khi nối
+                    let currentText = finalTranscriptStore.trim();
+                    if (currentText && !currentText.endsWith('.') && !currentText.endsWith('?') && !currentText.endsWith('!') && !currentText.endsWith(',')) {
+                        currentText += '. '; // Thêm dấu chấm và khoảng trắng để tách câu
+                    } else if (currentText && !currentText.endsWith(' ')) {
+                        currentText += ' '; // Chỉ thêm khoảng trắng nếu có dấu câu
+                    }
+
+                    // Loại bỏ phần trùng lặp giữa finalTranscriptStore và newFinalSegment
+                    let cleanedNewFinalSegment = newFinalSegment.trim();
+                    let overlapLength = 0;
+
+                    // Tìm độ dài của phần trùng lặp từ cuối finalTranscriptStore
+                    const storeWords = currentText.split(/\s+/).filter(Boolean); // Tách từ và loại bỏ rỗng
+                    const newWords = cleanedNewFinalSegment.split(/\s+/).filter(Boolean);
+
+                    for (let i = 0; i < Math.min(storeWords.length, newWords.length); i++) {
+                        if (storeWords[storeWords.length - 1 - i] === newWords[newWords.length - 1 - i]) {
+                            overlapLength++;
+                        } else {
+                            break;
+                        }
+                    }
+                    
+                    if (overlapLength > 0) {
+                         // Lấy số lượng ký tự tương ứng với overlapLength từ cuối cleanedNewFinalSegment
+                        const actualOverlapString = newWords.slice(newWords.length - overlapLength).join(' ');
+                        const newSegmentToAdd = cleanedNewFinalSegment.substring(cleanedNewFinalSegment.indexOf(actualOverlapString) + actualOverlapString.length).trim();
+                        
+                        finalTranscriptStore = currentText + newSegmentToAdd;
+                    } else {
+                        finalTranscriptStore = currentText + cleanedNewFinalSegment;
+                    }
+                }
+
+                // Cập nhật textarea: finalTranscriptStore (đã xác nhận) + interimTranscript (tạm thời)
+                // Đảm bảo không có khoảng trắng thừa ở đầu hoặc cuối.
+                let displayText = finalTranscriptStore;
+                if (interimTranscript) {
+                    // Thêm khoảng trắng nếu cần giữa final và interim
+                    if (displayText && !displayText.endsWith(' ')) {
+                        displayText += ' ';
+                    }
+                    displayText += interimTranscript.trim();
+                }
                 
-                // Hiển thị kết quả
-                textOutput.value = fullTranscript + interimTranscript;
+                textOutput.value = displayText.trim();
                 textOutput.scrollTop = textOutput.scrollHeight;
-                
-                // Cập nhật số từ
-                updateWordCount();
             };
-            
+
             recognition.onerror = (event) => {
                 console.error('Lỗi nhận dạng giọng nói:', event.error);
                 
@@ -1067,53 +737,56 @@ textOutput.scrollTop = textOutput.scrollHeight;
                             </ul>
                         </div>
                     `;
-                    // Dừng ghi âm và reset trạng thái
                     isRecording = false;
-                    recognitionStarted = false;
                     microphoneBtn.classList.remove('recording');
                     soundWaves.forEach(wave => wave.classList.remove('recording'));
                     microphoneBtn.disabled = true;
-                } else {
-                    status.innerHTML = `<span class="recording-status">Lỗi: ${event.error}</span>`;
-                    
-                    // Thử khởi động lại nếu đang trong trạng thái ghi âm
-                    if (isRecording && recognitionStarted && !isPaused) {
+                } else if (event.error === 'no-speech' || event.error === 'audio-capture') {
+                    // Các lỗi thường gặp khi không nghe thấy giọng nói hoặc có vấn đề về micro
+                    status.innerHTML = `<span class="recording-status">Không nhận dạng được giọng nói hoặc micro có vấn đề. Vui lòng thử lại.</span>`;
+                    // Thử khởi động lại nhận dạng nếu vẫn đang trong chế độ ghi
+                    if (isRecording) {
                         try {
-                            recognition.start();
+                            recognition.start(); 
                         } catch (error) {
                             console.error('Lỗi khi khởi động lại:', error);
+                        }
+                    }
+                } else {
+                    status.innerHTML = `<span class="recording-status">Lỗi: ${event.error}</span>`;
+                    if (isRecording) {
+                        try {
+                            recognition.start(); 
+                        } catch (error) {
+                            console.error('Lỗi khi khởi động lại:', error);
+                            status.innerHTML = '<span class="recording-status">Lỗi: Không thể tiếp tục ghi âm.</span>';
+                            isRecording = false;
+                            microphoneBtn.classList.remove('recording');
+                            soundWaves.forEach(wave => wave.classList.remove('recording'));
                         }
                     }
                 }
             };
             
             recognition.onend = () => {
-                if (isRecording && !ignoreOnend && recognitionStarted && !isPaused) {
-                    // Tự động khởi động lại nếu đang trong chế độ liên tục
-                    if (config.continuous) {
-                        restartTimeout = setTimeout(() => {
-                            try {
-                                recognition.start();
-                                status.innerHTML = '<span class="recording-status">Đang ghi âm... Hãy nói gì đó.</span>';
-                            } catch (error) {
-                                console.error('Lỗi khi tự động bắt đầu lại:', error);
-                                status.innerHTML = '<span class="recording-status">Lỗi: Không thể tiếp tục ghi âm.</span>';
-                                isRecording = false;
-                                recognitionStarted = false;
-                                microphoneBtn.classList.remove('recording');
-                                soundWaves.forEach(wave => wave.classList.remove('recording'));
-                            }
-                        }, 500);
+                // Nếu đang ghi và không phải do người dùng dừng, tự động khởi động lại
+                if (isRecording && !ignoreOnend) {
+                    try {
+                        recognition.start(); 
+                    } catch (error) {
+                        console.error('Lỗi khi tự động bắt đầu lại:', error);
+                        status.innerHTML = '<span class="recording-status">Lỗi: Không thể tiếp tục ghi âm.</span>';
+                        isRecording = false;
+                        microphoneBtn.classList.remove('recording');
+                        soundWaves.forEach(wave => wave.classList.remove('recording'));
                     }
                 }
             };
             
-            // Xử lý nút Copy
             copyBtn.addEventListener('click', () => {
                 textOutput.select();
                 document.execCommand('copy');
                 
-                // Hiệu ứng feedback
                 const originalText = copyBtn.innerHTML;
                 copyBtn.innerHTML = '<i class="fas fa-check"></i> Đã sao chép!';
                 setTimeout(() => {
@@ -1121,7 +794,6 @@ textOutput.scrollTop = textOutput.scrollHeight;
                 }, 2000);
             });
             
-            // Xử lý nút Tải xuống
             downloadBtn.addEventListener('click', () => {
                 const text = textOutput.value;
                 if (!text.trim()) {
@@ -1138,12 +810,10 @@ textOutput.scrollTop = textOutput.scrollHeight;
                 document.body.appendChild(a);
                 a.click();
                 
-                // Dọn dẹp
                 setTimeout(() => {
                     document.body.removeChild(a);
                     window.URL.revokeObjectURL(url);
                     
-                    // Hiệu ứng feedback
                     const originalText = downloadBtn.innerHTML;
                     downloadBtn.innerHTML = '<i class="fas fa-check"></i> Đã tải xuống!';
                     setTimeout(() => {
@@ -1152,17 +822,14 @@ textOutput.scrollTop = textOutput.scrollHeight;
                 }, 100);
             });
             
-            // Xử lý nút Xóa
             clearBtn.addEventListener('click', () => {
                 if (textOutput.value.trim() === '' || confirm('Bạn có chắc muốn xóa toàn bộ văn bản?')) {
                     textOutput.value = '';
-                    fullTranscript = '';
-                    updateWordCount();
-                    localStorage.removeItem('speechToTextBackup');
+                    finalTranscriptStore = ''; // Đặt lại biến lưu trữ văn bản cuối cùng
                 }
             });
 
-            // Xử lý nút Chia sẻ
+            const shareBtn = document.getElementById('shareBtn');
             shareBtn.addEventListener('click', async () => {
                 const text = textOutput.value.trim();
                 if (!text) {
@@ -1183,21 +850,9 @@ textOutput.scrollTop = textOutput.scrollHeight;
                 }
             });
 
-            // Toggle function for info box
             infoBoxHeading.addEventListener('click', () => {
                 infoBox.classList.toggle('active');
             });
-            
-            // Cập nhật khi người dùng nhập văn bản
-            textOutput.addEventListener('input', () => {
-                updateWordCount();
-                fullTranscript = textOutput.value;
-            });
-            
-            // Khởi động ứng dụng
-            checkMicrophonePermission();
-            initSettings();
-            updateWordCount();
         });
     </script>
 </body>
