@@ -969,6 +969,7 @@
                     fullTranscript = processSmartMode(fullTranscript);
                     textOutput.value = fullTranscript;
                     updateWordCount();
+textOutput.scrollTop = textOutput.scrollHeight;
                     
                     // Dừng tự động lưu nếu không cần
                     if (!config.autoSave) {
@@ -1035,7 +1036,9 @@
                         // Xử lý chế độ thông minh
                         const processed = processSmartMode(transcript);
                         finalTranscript += processed;
-                        fullTranscript += processed;
+                        if (!fullTranscript.endsWith(processed.trim())) {
+    fullTranscript += processed;
+}
                     } else {
                         interimTranscript += transcript;
                     }
