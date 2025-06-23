@@ -501,25 +501,26 @@
         }
 
         const recognition = new SpeechRecognition();
-        recognition.continuous = true; // Keep listening even after a pause
-        recognition.interimResults = true; // Show results as they are being spoken
+        recognition.continuous = true;
+        recognition.interimResults = true;
         recognition.lang = 'vi-VN';
 
         let isRecording = false;
         let final_transcript = '';
 
-        // Function to handle microphone button click
+        // CORRECTED: Microphone button click handler
         microphoneBtn.addEventListener('click', () => {
             if (isRecording) {
                 recognition.stop();
-                // UI changes are handled in recognition.onend
             } else {
-                final_transcript = ''; // Clear previous session's final transcript
-                textOutput.value = ''; // Clear the main text area for new recording
+                // Reset for the new session
+                final_transcript = ''; 
+                textOutput.value = '';
                 recognition.start();
             }
         });
 
+        // onstart handler
         recognition.onstart = () => {
             isRecording = true;
             microphoneBtn.classList.add('recording');
@@ -527,14 +528,15 @@
             status.innerHTML = '<span class="recording-status">Đang ghi âm...</span>';
         };
 
+        // onend handler
         recognition.onend = () => {
             isRecording = false;
             microphoneBtn.classList.remove('recording');
             soundWaves.forEach(wave => wave.classList.remove('recording'));
             status.innerHTML = 'Đã dừng ghi âm. Nhấn micro để bắt đầu lại.';
             
-            // Save the final transcript to the storage area
-            const currentText = textOutput.value.trim(); // Use textOutput's value which includes interim results
+            // Save the final transcript from the text area to the storage area
+            const currentText = textOutput.value.trim();
             if (currentText) {
                 const para = document.createElement('p');
                 para.textContent = currentText;
@@ -542,16 +544,20 @@
             }
         };
         
+        // CORRECTED: onresult handler to prevent duplication
         recognition.onresult = (event) => {
             let interim_transcript = '';
-            final_transcript = ''; // Reset final transcript for recalculation
-            for (let i = 0; i < event.results.length; ++i) {
+            // Loop through results starting from the last processed one
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
                 if (event.results[i].isFinal) {
+                    // Append final results to our master string
                     final_transcript += event.results[i][0].transcript;
                 } else {
+                    // Append interim results to a temporary string
                     interim_transcript += event.results[i][0].transcript;
                 }
             }
+            // Update the display with the final master string plus the current interim part
             textOutput.value = final_transcript + interim_transcript;
             textOutput.scrollTop = textOutput.scrollHeight;
         };
@@ -559,12 +565,12 @@
         recognition.onerror = (event) => {
             console.error('Speech recognition error:', event.error);
             status.innerHTML = `<span class="recording-status">Lỗi: ${event.error}. Vui lòng kiểm tra quyền micro.</span>`;
-            isRecording = false;
-            microphoneBtn.classList.remove('recording');
-            soundWaves.forEach(wave => wave.classList.remove('recording'));
+            if (isRecording) {
+                recognition.stop();
+            }
         };
 
-        // Action Buttons
+        // Action Buttons logic
         copyBtn.addEventListener('click', () => {
             if (!textOutput.value) return;
             navigator.clipboard.writeText(textOutput.value).then(() => {
@@ -588,7 +594,7 @@
         });
 
         clearBtn.addEventListener('click', () => {
-            if (confirm('Bạn có chắc muốn xóa văn bản ở ô chính?')) {
+            if (confirm('Bạn có chắc muốn xóa văn bản ở ô chính và đoạn đang ghi?')) {
                 textOutput.value = '';
                 final_transcript = '';
             }
