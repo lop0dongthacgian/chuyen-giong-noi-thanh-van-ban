@@ -395,8 +395,8 @@
             color: #2980b9;
             position: relative;
             padding-left: 25px;
-            display: flex; /* Ensure content wraps correctly */
-            align-items: flex-start; /* Align items to the top for longer text */
+            display: flex;
+            align-items: flex-start;
         }
 
         .info-box li i {
@@ -406,24 +406,23 @@
             color: #27ae60;
         }
 
-        /* Styles for checkboxes and select in info-box */
         .info-box li label {
             display: flex;
             align-items: center;
             cursor: pointer;
-            color: #2c3e50; /* Adjust label color */
-            font-weight: normal; /* Override default label bold */
-            font-size: 1rem; /* Adjust font size */
-            margin-left: 5px; /* Space between icon and text */
+            color: #2c3e50;
+            font-weight: normal;
+            font-size: 1rem;
+            margin-left: 5px;
         }
         .info-box li label i {
-            position: static; /* Remove absolute positioning for icons inside labels */
-            margin-right: 10px; /* Space between icon and text */
-            color: #3498db; /* Color for new feature icons */
+            position: static;
+            margin-right: 10px;
+            color: #3498db;
         }
         .info-box li input[type="checkbox"] {
             margin-right: 10px;
-            transform: scale(1.2); /* Make checkbox slightly larger */
+            transform: scale(1.2);
         }
         .info-box li select {
             padding: 8px 12px;
@@ -431,9 +430,9 @@
             border: 1px solid #ccc;
             font-size: 1rem;
             cursor: pointer;
-            margin-left: 10px; /* Space from label */
-            flex-grow: 1; /* Allow select to take available space */
-            max-width: calc(100% - 150px); /* Limit width */
+            margin-left: 10px;
+            flex-grow: 1;
+            max-width: calc(100% - 150px);
         }
 
         .duplicate-warning {
@@ -769,10 +768,11 @@
                 return text.replace(/([.!?]\s*)([a-z])/g, (match, p1, p2) => p1 + p2.toUpperCase());
             }
 
-            // Xử lý kết quả nhận dạng giọng nói (ĐÃ SỬA để hỗ trợ văn bản dài và giữ lỗi lặp theo yêu cầu)
+            // Xử lý kết quả nhận dạng giọng nói (ĐÃ SỬA để giảm lặp)
             recognition.onresult = (event) => {
                 interimTranscript = ''; // Reset interim for current event processing
                 const shouldAutoCapitalize = autoCapitalizeCheckbox.checked;
+                let newFinalSegmentCollected = '';
 
                 // Iterate through all new results
                 for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -781,14 +781,29 @@
                     let segmentText = removeDuplicateWords(result[0].transcript);
 
                     if (result.isFinal) {
-                        // Append final segments to the cumulative final transcript
-                        // Add a space for readability between segments
-                        lastFinalTranscript += segmentText + ' ';
+                        // For final segments, append to a temporary holder for this event
+                        newFinalSegmentCollected += segmentText + ' ';
                     } else {
                         // Accumulate interim results for the current `onresult` event
                         interimTranscript += segmentText;
                     }
                 }
+
+                // Append the newly collected final segment to the cumulative final transcript
+                // Basic check to avoid appending if the new segment is identical to the end of the last one
+                const trimmedNewFinalSegment = newFinalSegmentCollected.trim();
+                const trimmedLastFinalTranscript = lastFinalTranscript.trim();
+
+                if (trimmedNewFinalSegment && !trimmedLastFinalTranscript.endsWith(trimmedNewFinalSegment)) {
+                     // Simple check: If the new segment isn't already a suffix of the last final text, append it.
+                     // This helps mitigate SOME cross-segment duplication without being overly aggressive.
+                    lastFinalTranscript += newFinalSegmentCollected;
+                }
+                 // If lastFinalTranscript is empty, always add the first final segment
+                else if (trimmedNewFinalSegment && !trimmedLastFinalTranscript) {
+                    lastFinalTranscript += newFinalSegmentCollected;
+                }
+
 
                 // Combine accumulated final text with the current interim text
                 let displayContent = lastFinalTranscript + interimTranscript;
