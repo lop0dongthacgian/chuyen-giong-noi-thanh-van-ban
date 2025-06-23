@@ -596,7 +596,7 @@
             let isRecording = false;
             let ignoreOnend = false;
             let recognitionStarted = false;
-            let finalTranscriptSegment = ''; // Lưu trữ các đoạn final đã nhận dạng trong một phiên liên tục
+            let currentPartialTranscript = ''; // Biến để lưu trữ văn bản tạm thời trước khi đưa vào finalTranscript
 
             // Hàm kiểm tra quyền microphone
             function checkMicrophonePermission() {
@@ -645,15 +645,6 @@
                 storedTextOutput.scrollTop = storedTextOutput.scrollHeight;
             });
             
-            // Hàm để chuyển văn bản từ ô tạm thời sang ô lưu trữ
-            function moveTemporaryToStored() {
-                if (textOutput.value.trim() !== '') {
-                    storedTextOutput.value += (storedTextOutput.value ? '\n' : '') + textOutput.value.trim();
-                    textOutput.value = ''; // Xóa văn bản tạm
-                    finalTranscriptSegment = ''; // Reset segment
-                }
-            }
-
             // Xử lý sự kiện khi nhấn nút micro
             microphoneBtn.addEventListener('click', () => {
                 if (isRecording) {
@@ -664,7 +655,12 @@
                     status.innerHTML = 'Đã dừng ghi âm. <span style="font-weight:normal;">Nhấn Micro để ghi âm lại.</span>';
                     isRecording = false;
                     recognitionStarted = false;
-                    moveTemporaryToStored(); // Chuyển văn bản khi dừng thủ công
+                    // Chuyển văn bản từ ô tạm thời sang ô lưu trữ khi dừng ghi âm thủ công
+                    if (textOutput.value.trim() !== '') {
+                        storedTextOutput.value += (storedTextOutput.value ? '\n' : '') + textOutput.value.trim();
+                        textOutput.value = ''; // Xóa văn bản tạm
+                        currentPartialTranscript = ''; // Reset biến tạm thời
+                    }
                 } else {
                     try {
                         recognition.start();
@@ -674,9 +670,6 @@
                         status.innerHTML = '<span class="recording-status">Đang ghi âm... Hãy nói gì đó.</span>';
                         isRecording = true;
                         recognitionStarted = true;
-                        // Không xóa textOutput ở đây, vì có thể có văn bản tạm thời từ lần trước
-                        // textOutput.value = ''; // Không cần reset ở đây
-                        finalTranscriptSegment = ''; // Luôn reset khi bắt đầu phiên mới
                     } catch (error) {
                         console.error('Lỗi khi bắt đầu recognition:', error);
                         status.innerHTML = '<span class="recording-status">Lỗi: Không thể bắt đầu ghi âm. Vui lòng kiểm tra microphone.</span>';
@@ -688,14 +681,12 @@
                 }
             });
             
-            // Hàm xử lý loại bỏ từ trùng lặp (giữ nguyên)
+            // Hàm xử lý loại bỏ từ trùng lặp
             function removeDuplicateWords(transcript) {
                 const words = transcript.split(' ');
                 const result = [];
                 for (let i = 0; i < words.length; i++) {
-                    // Tránh thêm từ nếu nó giống hệt từ cuối cùng đã thêm
-                    // và không phải là từ rỗng
-                    if (words[i].trim() !== '' && words[i] !== result[result.length - 1]) {
+                    if (words[i] !== words[i - 1]) {
                         result.push(words[i]);
                     }
                 }
@@ -704,32 +695,24 @@
             
             recognition.onresult = (event) => {
                 let interimTranscript = '';
-                let newFinalSegment = '';
+                let finalTranscript = '';
 
-                // Lặp qua tất cả các kết quả từ lần gọi onresult này
                 for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    const result = event.results[i];
-                    if (result.isFinal) {
-                        newFinalSegment += result[0].transcript; // Lấy đoạn final mới
+                    const transcript = removeDuplicateWords(event.results[i][0].transcript);
+                    if (event.results[i].isFinal) {
+                        finalTranscript += transcript;
                     } else {
-                        interimTranscript += result[0].transcript; // Lấy đoạn interim mới nhất
+                        interimTranscript += transcript;
                     }
                 }
-
-                // Cập nhật textOutput (hiển thị tạm thời)
-                // finalTranscriptSegment chứa các đoạn đã final của phiên hiện tại
-                // interimTranscript là đoạn tạm thời chưa final
-                textOutput.value = finalTranscriptSegment + interimTranscript;
-                textOutput.scrollTop = textOutput.scrollHeight;
-
-                // Nếu có đoạn final mới, thêm nó vào finalTranscriptSegment
-                if (newFinalSegment) {
-                    finalTranscriptSegment += newFinalSegment;
-                    // Sau khi thêm final mới, cập nhật lại textOutput
-                    // để đảm bảo hiển thị đúng và không có interim cũ
-                    textOutput.value = finalTranscriptSegment; 
-                    textOutput.scrollTop = textOutput.scrollHeight;
+                
+                // Cập nhật ô tạm thời
+                textOutput.value = currentPartialTranscript + interimTranscript;
+                if (finalTranscript) {
+                    currentPartialTranscript += finalTranscript;
+                    textOutput.value = currentPartialTranscript;
                 }
+                textOutput.scrollTop = textOutput.scrollHeight;
             };
 
             recognition.onerror = (event) => {
@@ -751,12 +734,22 @@
                     microphoneBtn.classList.remove('recording');
                     soundWaves.forEach(wave => wave.classList.remove('recording'));
                     microphoneBtn.disabled = true;
-                    moveTemporaryToStored(); // Chuyển văn bản khi có lỗi và dừng ghi âm
+                    // Chuyển văn bản từ ô tạm thời sang ô lưu trữ khi có lỗi và dừng ghi âm
+                    if (textOutput.value.trim() !== '') {
+                        storedTextOutput.value += (storedTextOutput.value ? '\n' : '') + textOutput.value.trim();
+                        textOutput.value = ''; // Xóa văn bản tạm
+                        currentPartialTranscript = ''; // Reset biến tạm thời
+                    }
                 } else {
                     status.innerHTML = `<span class="recording-status">Lỗi: ${event.error}</span>`;
                     // Tự động khởi động lại nếu đang ghi âm và không phải lỗi cấm quyền
                     if (isRecording && recognitionStarted) {
-                        moveTemporaryToStored(); // Chuyển văn bản trước khi khởi động lại
+                         // Chuyển văn bản từ ô tạm thời sang ô lưu trữ trước khi khởi động lại
+                        if (textOutput.value.trim() !== '') {
+                            storedTextOutput.value += (storedTextOutput.value ? '\n' : '') + textOutput.value.trim();
+                            textOutput.value = ''; // Xóa văn bản tạm
+                            currentPartialTranscript = ''; // Reset biến tạm thời
+                        }
                         try {
                             recognition.start();
                             status.innerHTML = '<span class="recording-status">Đang ghi âm lại...</span>';
@@ -775,7 +768,11 @@
             recognition.onend = () => {
                 // Khi recognition kết thúc (do dừng thủ công hoặc do hết thời gian/lỗi)
                 // Chuyển văn bản từ ô tạm thời sang ô lưu trữ
-                moveTemporaryToStored();
+                if (textOutput.value.trim() !== '') {
+                    storedTextOutput.value += (storedTextOutput.value ? '\n' : '') + textOutput.value.trim();
+                    textOutput.value = ''; // Xóa văn bản tạm
+                    currentPartialTranscript = ''; // Reset biến tạm thời
+                }
 
                 if (isRecording && !ignoreOnend && recognitionStarted) {
                     try {
@@ -842,7 +839,7 @@
                 if ((textOutput.value.trim() === '' && storedTextOutput.value.trim() === '') || confirm('Bạn có chắc muốn xóa toàn bộ văn bản?')) {
                     textOutput.value = '';
                     storedTextOutput.value = '';
-                    finalTranscriptSegment = ''; // Reset biến lưu đoạn final
+                    currentPartialTranscript = ''; // Reset biến tạm thời
                 }
             });
 
