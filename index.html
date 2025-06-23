@@ -12,7 +12,6 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
         body {
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
             min-height: 100vh;
@@ -22,7 +21,6 @@
             padding: 20px;
             color: #333;
         }
-        
         .container {
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -32,12 +30,10 @@
             overflow: hidden;
             animation: fadeIn 0.8s ease-out;
         }
-        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         .header {
             background: linear-gradient(to right, #3498db, #2c3e50);
             color: white;
@@ -46,7 +42,6 @@
             position: relative;
             overflow: hidden;
         }
-        
         .header::before {
             content: "";
             position: absolute;
@@ -57,7 +52,6 @@
             background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
             transform: rotate(30deg);
         }
-        
         .header h1 {
             font-size: 2.4rem;
             margin-bottom: 10px;
@@ -65,7 +59,6 @@
             position: relative;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
-        
         .header p {
             font-size: 1.1rem;
             opacity: 0.9;
@@ -73,18 +66,15 @@
             margin: 0 auto;
             position: relative;
         }
-        
         .content {
             padding: 30px;
         }
-        
         .recorder-container {
             display: flex;
             justify-content: center;
             margin-bottom: 30px;
             position: relative;
         }
-        
         .microphone-btn {
             background: linear-gradient(to right, #3498db, #2c3e50);
             border: none;
@@ -100,17 +90,14 @@
             position: relative;
             z-index: 2;
         }
-        
         .microphone-btn:hover {
             transform: scale(1.08);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
         }
-        
         .microphone-btn.recording {
             background: linear-gradient(to right, #e74c3c, #c0392b);
             animation: pulse 1.5s infinite;
         }
-        
         .microphone-btn:disabled {
             background: #95a5a6;
             cursor: not-allowed;
@@ -118,27 +105,22 @@
             box-shadow: none;
             animation: none;
         }
-        
         .microphone-btn:disabled:hover {
             transform: none;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-        
         .microphone-btn i {
             font-size: 45px;
             color: white;
             transition: transform 0.3s;
         }
-        
         .microphone-btn.recording i {
             animation: micPulse 0.8s infinite alternate;
         }
-        
         @keyframes micPulse {
             from { transform: scale(1); }
             to { transform: scale(1.2); }
         }
-        
         .sound-wave {
             position: absolute;
             width: 160px;
@@ -149,29 +131,24 @@
             animation: wave 2s infinite;
             z-index: 1;
         }
-        
         .recording .sound-wave {
             opacity: 1;
         }
-        
         .sound-wave:nth-child(2) {
             animation-delay: 0.5s;
             width: 180px;
             height: 180px;
         }
-        
         .sound-wave:nth-child(3) {
             animation-delay: 1s;
             width: 200px;
             height: 200px;
         }
-        
         @keyframes wave {
             0% { transform: scale(0.8); opacity: 0.7; }
             70% { transform: scale(1.2); opacity: 0.1; }
             100% { transform: scale(1.3); opacity: 0; }
         }
-        
         .status {
             text-align: center;
             margin-top: 15px;
@@ -184,12 +161,10 @@
             line-height: 1.6;
             font-weight: 500;
         }
-        
         .recording-status {
             color: #e74c3c;
             font-weight: bold;
         }
-        
         .permission-error {
             color: #e74c3c;
             background-color: #fdecea;
@@ -200,20 +175,16 @@
             margin-top: 10px;
             border-left: 4px solid #e74c3c;
         }
-        
         .permission-error ul {
             margin: 10px 0 10px 20px;
         }
-        
         .permission-error li {
             margin-bottom: 8px;
         }
-        
         .text-container {
             margin-bottom: 25px;
             position: relative;
         }
-        
         .text-container label {
             display: block;
             margin-bottom: 12px;
@@ -221,7 +192,6 @@
             color: #2c3e50;
             font-size: 1.2rem;
         }
-        
         .text-output {
             width: 100%;
             height: 200px;
@@ -235,21 +205,18 @@
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
             line-height: 1.6;
         }
-        
         .text-output:focus {
             border-color: #2980b9;
             outline: none;
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2), inset 0 2px 5px rgba(0,0,0,0.05);
             background-color: #fff;
         }
-        
         .action-buttons {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
             margin-top: 10px;
         }
-        
         .btn {
             flex: 1;
             min-width: 160px;
@@ -268,7 +235,6 @@
             position: relative;
             overflow: hidden;
         }
-        
         .btn::after {
             content: "";
             position: absolute;
@@ -280,46 +246,37 @@
             transform: rotate(25deg);
             transition: all 0.6s;
         }
-        
         .btn:hover::after {
             left: 120%;
         }
-        
         .btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
-        
         .btn:active {
             transform: translateY(-2px);
         }
-        
         .btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
-        
         .btn:disabled:hover {
             transform: none;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
         .btn:disabled::after {
             display: none;
         }
-        
         .btn-copy {
             background: linear-gradient(to right, #2ecc71, #27ae60);
             color: white;
         }
-        
         .btn-download {
             background: linear-gradient(to right, #9b59b6, #8e44ad);
             color: white;
         }
-        
         .btn-share {
             background: linear-gradient(to right, #3498db, #2980b9);
             color: white;
@@ -328,7 +285,6 @@
             background: linear-gradient(to right, #e67e22, #d35400);
             color: white;
         }
-        
         .footer {
             text-align: center;
             padding: 20px;
@@ -337,13 +293,11 @@
             font-size: 0.95rem;
             border-top: 1px solid #eee;
         }
-        
         .footer p {
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
         }
-        
         .info-box {
             background-color: #e3f2fd;
             border-radius: 10px;
@@ -351,71 +305,71 @@
             margin-top: 20px;
             border-left: 4px solid #3498db;
         }
-        
         .info-box h3 {
             color: #2c3e50;
             margin-bottom: 10px;
             font-size: 1.1rem;
-            cursor: pointer; /* Biến con trỏ thành bàn tay khi di chuột qua tiêu đề */
+            cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center; /* Canh giữa tiêu đề */
+            justify-content: center;
             gap: 10px;
-            font-weight: bold; /* In đậm tiêu đề */
-            color: #1a2a6c; /* Màu sắc cho tiêu đề */
+            font-weight: bold;
+            color: #1a2a6c;
             text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
-
         .info-box h3 i {
             transition: transform 0.3s ease-in-out;
         }
-
         .info-box.active h3 i {
-            transform: rotate(90deg); /* Xoay icon khi mở rộng */
+            transform: rotate(90deg);
         }
-        
         .info-box ul {
             padding-left: 20px;
-            margin-bottom: 0; /* Remove bottom margin */
-            list-style: none; /* Remove default bullet points */
+            margin-bottom: 0;
+            list-style: none;
             transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
-            max-height: 0; /* Thu gọn nội dung */
+            max-height: 0;
             overflow: hidden;
             opacity: 0;
         }
-
         .info-box.active ul {
-            max-height: 1000px; /* Tăng chiều cao tối đa để chứa đủ nội dung */
+            max-height: 1000px;
             opacity: 1;
-            margin-top: 10px; /* Add margin when expanded */
+            margin-top: 10px;
         }
-        
         .info-box li {
             margin-bottom: 8px;
-            color: #2980b9; /* Màu sắc cho nội dung hướng dẫn */
+            color: #2980b9;
             position: relative;
-            padding-left: 25px; /* Khoảng cách cho icon */
+            padding-left: 25px;
         }
-
         .info-box li i {
             position: absolute;
             left: 0;
             top: 4px;
-            color: #27ae60; /* Màu sắc cho icon check */
+            color: #27ae60;
         }
-        
         .duplicate-warning {
-            background-color: #fff9db;
-            color: #e67700;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 10px;
-            border-left: 4px solid #ffd43b;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            display: none;
         }
-        
+        #storageArea {
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f1f3f5;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        #storageArea p {
+            margin: 5px 0;
+            padding: 10px;
+            background: #e3f2fd;
+            border-radius: 5px;
+            border: 1px solid #bde0fe;
+        }
+
         @keyframes pulse {
             0% {
                 box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
@@ -427,49 +381,39 @@
                 box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
             }
         }
-        
         @media (max-width: 650px) {
             .header h1 {
                 font-size: 2rem;
             }
-            
             .microphone-btn {
                 width: 100px;
                 height: 100px;
             }
-            
             .sound-wave {
                 width: 140px;
                 height: 140px;
             }
-            
             .sound-wave:nth-child(2) {
                 width: 160px;
                 height: 160px;
             }
-            
             .sound-wave:nth-child(3) {
                 width: 180px;
                 height: 180px;
             }
-            
             .content {
                 padding: 20px;
             }
-            
             .action-buttons {
                 flex-direction: column;
             }
-            
             .btn {
                 width: 100%;
             }
-            
             .status {
                 min-height: 100px;
                 font-size: 1.1rem;
             }
-            
             .text-output {
                 height: 180px;
                 font-size: 1.1rem;
@@ -494,53 +438,34 @@
                 </button>
             </div>
             
-            <div class="status" id="status">
-                Sẵn sàng ghi âm...
-            </div>
+            <div class="status" id="status">Sẵn sàng ghi âm...</div>
             
             <div class="text-container">
-                <label for="textOutput"><i class="fas fa-pencil-alt"></i>Chỉnh sửa văn bản (nếu cần):</label>
+                <label for="textOutput"><i class="fas fa-pencil-alt"></i>Văn bản hiện tại:</label>
                 <textarea id="textOutput" class="text-output" placeholder="Văn bản chuyển đổi sẽ hiển thị ở đây..."></textarea>
-                
-                <div class="duplicate-warning" id="duplicateWarning">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>Ứng dụng đã được cải tiến để giảm thiểu tình trạng lặp văn bản</span>
-                </div>
-
-<div class="info-box" style="margin-top: 20px;">
-  <h3><i class="fas fa-folder-open"></i> Đoạn ghi âm đã lưu</h3>
-  <div id="storageArea" style="padding: 10px; max-height: 300px; overflow-y: auto; background: #f1f3f5; border-radius: 10px; font-size: 1rem;"></div>
-  <button id="mergeBtn" class="btn btn-copy" style="margin-top: 10px;"><i class="fas fa-compress"></i> Gộp tất cả văn bản</button>
-</div>
-
             </div>
-            
+
             <div class="action-buttons">
-                <button class="btn btn-copy" id="copyBtn">
-                    <i class="fas fa-copy"></i> Sao chép văn bản
-                </button>
-                <button class="btn btn-share" id="shareBtn">
-                    <i class="fas fa-share-alt"></i> Chia sẻ văn bản
-                </button>
-                <button class="btn btn-download" id="downloadBtn">
-                    <i class="fas fa-download"></i> Tạo file .txt
-                </button>
-                <button class="btn btn-clear" id="clearBtn">
-                    <i class="fas fa-trash-alt"></i> Xóa văn bản
-                </button>
+                <button class="btn btn-copy" id="copyBtn"><i class="fas fa-copy"></i> Sao chép</button>
+                <button class="btn btn-share" id="shareBtn"><i class="fas fa-share-alt"></i> Chia sẻ</button>
+                <button class="btn btn-download" id="downloadBtn"><i class="fas fa-download"></i> Tạo file .txt</button>
+                <button class="btn btn-clear" id="clearBtn"><i class="fas fa-trash-alt"></i> Xóa</button>
+            </div>
+
+            <div class="info-box" style="margin-top: 20px;">
+                <h3 id="savedSegmentsHeader"><i class="fas fa-folder-open"></i> Đoạn ghi âm đã lưu</h3>
+                <div id="storageArea"></div>
+                <button id="mergeBtn" class="btn btn-copy" style="margin-top: 10px; width: 100%;"><i class="fas fa-compress"></i> Gộp tất cả văn bản đã lưu</button>
             </div>
             
             <div class="info-box" id="infoBox">
                 <h3><i class="fas fa-chevron-right"></i> Hướng dẫn sử dụng</h3>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> **Bắt đầu ghi âm:** Nhấn vào nút biểu tượng Micro lớn ở giữa để bắt đầu hoặc dừng ghi âm.</li>
-                    <li><i class="fas fa-check-circle"></i> **Cấp quyền Micro:** Nếu đây là lần đầu sử dụng, trình duyệt có thể yêu cầu cấp quyền truy cập micro. Vui lòng cho phép để ứng dụng hoạt động.</li>
-                    <li><i class="fas fa-check-circle"></i> **Nói rõ ràng:** Để đạt kết quả tốt nhất, hãy nói rõ ràng, chậm rãi và ở gần micro.</li>
-                    <li><i class="fas fa-check-circle"></i> **Sao chép văn bản:** Sau khi ghi âm, nhấn nút "Copy văn bản" để sao chép nội dung vào bộ nhớ tạm.</li>
-                    <li><i class="fas fa-check-circle"></i> **Tạo file .txt:** Nhấn nút "Tạo file .txt" để tải văn bản đã chuyển đổi xuống máy của bạn.</li>
-                    <li><i class="fas fa-check-circle"></i> **Chia sẻ văn bản:** Nhấn nút "Chia sẻ văn bản" để chia sẻ nội dung thông qua các ứng dụng khác (tùy thuộc vào thiết bị của bạn).</li>
-                    <li><i class="fas fa-check-circle"></i> **Xóa văn bản:** Nhấn nút "Xóa văn bản" để xóa toàn bộ nội dung trong ô văn bản.</li>
-                    <li><i class="fas fa-check-circle"></i> **Lưu ý trình duyệt:** Ứng dụng hoạt động tốt nhất và ổn định nhất trên trình duyệt Google Chrome.</li>
+                    <li><i class="fas fa-check-circle"></i> **Bắt đầu/Dừng:** Nhấn vào nút Micro để bắt đầu hoặc dừng ghi âm.</li>
+                    <li><i class="fas fa-check-circle"></i> **Lưu đoạn:** Khi dừng ghi âm, đoạn văn bản hiện tại sẽ tự động được lưu.</li>
+                    <li><i class="fas fa-check-circle"></i> **Gộp văn bản:** Nhấn "Gộp tất cả văn bản đã lưu" để đưa tất cả các đoạn đã lưu vào ô văn bản chính.</li>
+                    <li><i class="fas fa-check-circle"></i> **Nói rõ ràng:** Để đạt kết quả tốt nhất, hãy nói rõ ràng và ở gần micro.</li>
+                    <li><i class="fas fa-check-circle"></i> **Lưu ý trình duyệt:** Ứng dụng hoạt động tốt nhất trên trình duyệt Google Chrome.</li>
                 </ul>
             </div>
         </div>
@@ -552,315 +477,149 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const microphoneBtn = document.getElementById('microphoneBtn');
-            const textOutput = document.getElementById('textOutput');
-            const copyBtn = document.getElementById('copyBtn');
-            const downloadBtn = document.getElementById('downloadBtn');
-            const clearBtn = document.getElementById('clearBtn');
-            const status = document.getElementById('status');
-            const soundWaves = document.querySelectorAll('.sound-wave');
-            const duplicateWarning = document.getElementById('duplicateWarning');
-            const infoBox = document.getElementById('infoBox'); // Get the info box element
-            const infoBoxHeading = infoBox.querySelector('h3'); // Get the heading inside info box
-            
-            // Kiểm tra trình duyệt hỗ trợ Web Speech API
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            
-            if (!SpeechRecognition) {
-                status.innerHTML = '<span class="recording-status">Trình duyệt của bạn không hỗ trợ Web Speech API. Vui lòng sử dụng Chrome.</span>';
-                microphoneBtn.disabled = true;
-                return;
-            }
-            
-            const recognition = new SpeechRecognition();
-let recordingStartTime = null;
-let recordingTimerInterval = null;
-
-            recognition.continuous = true;
-            recognition.interimResults = true;
-            recognition.lang = 'vi-VN'; // Thiết lập ngôn ngữ tiếng Việt
-            
-            let isRecording = false;
-            let ignoreOnend = false;
-            let recognitionStarted = false;
-            let lastFinalTranscript = '';
-            let lastProcessedIndex = 0;
-            let interimTranscript = '';
-            
-            // Hàm kiểm tra quyền microphone
-            function checkMicrophonePermission() {
-                if (!navigator.permissions) {
-                    return;
-                }
-                
-                navigator.permissions.query({ name: 'microphone' }).then(permissionStatus => {
-                    updatePermissionStatus(permissionStatus.state);
-                    
-                    permissionStatus.onchange = () => {
-                        updatePermissionStatus(permissionStatus.state);
-                    };
-                }).catch(error => {
-                    console.error('Không thể kiểm tra quyền microphone:', error);
-                });
-            }
-            
-            function updatePermissionStatus(state) {
-                if (state === 'denied') {
-                    status.innerHTML = `
-                        <div class="permission-error">
-                            <strong><i class="fas fa-exclamation-triangle"></i> Microphone bị chặn. Vui lòng cấp quyền:</strong>
-                            <ul>
-                                <li>Nhấn vào biểu tượng ổ khóa trên thanh địa chỉ</li>
-                                <li>Chọn "Cài đặt trang web" hoặc "Quyền"</li>
-                                <li>Cho phép quyền Microphone</li>
-                                <li>Tải lại trang</li>
-                            </ul>
-                        </div>
-                    `;
-                    microphoneBtn.disabled = true;
-                } else if (state === 'granted') {
-                    status.textContent = 'Sẵn sàng ghi âm...';
-                    microphoneBtn.disabled = false;
-                }
-            }
-            
-            // Kiểm tra quyền khi tải trang
-            checkMicrophonePermission();
-            
-            // Tự động cuộn textarea khi nội dung dài
-            textOutput.addEventListener('input', () => {
-                textOutput.scrollTop = textOutput.scrollHeight;
-            });
-            
-            // Xử lý sự kiện khi nhấn nút micro
-            microphoneBtn.addEventListener('click', () => {
-                if (isRecording) {
-                    // Dừng ghi âm
-                    ignoreOnend = true;
-                    recognition.stop();
-                    microphoneBtn.classList.remove('recording');
-                    soundWaves.forEach(wave => wave.classList.remove('recording'));
-                    status.innerHTML = 'Đã dừng ghi âm. <span class="recording-status">Sẵn sàng ghi âm...</span>';
-                    isRecording = false;
-                    recognitionStarted = false;
-                } else {
-                    // Thử bắt đầu ghi âm
-                    lastFinalTranscript = textOutput.value;
-                    lastProcessedIndex = 0; // Reset chỉ số kết quả
-                    interimTranscript = ''; // Reset kết quả tạm thời
-                    try {
-                        recognition.start();
-                        ignoreOnend = false;
-                        microphoneBtn.classList.add('recording');
-                        soundWaves.forEach(wave => wave.classList.add('recording'));
-                        status.innerHTML = '<span class="recording-status">Đang ghi âm... Hãy nói gì đó.</span>';
-                        isRecording = true;
-                        recognitionStarted = true;
-                        
-                        // Ẩn cảnh báo khi bắt đầu ghi âm
-                        duplicateWarning.style.display = 'none';
-                    } catch (error) {
-                        console.error('Lỗi khi bắt đầu recognition:', error);
-                        status.innerHTML = '<span class="recording-status">Lỗi: Không thể bắt đầu ghi âm. Vui lòng kiểm tra microphone.</span>';
-                        isRecording = false;
-                        recognitionStarted = false;
-                        microphoneBtn.classList.remove('recording');
-                        soundWaves.forEach(wave => wave.classList.remove('recording'));
-                    }
-                }
-            });
-            
-            // Hàm xử lý loại bỏ từ trùng lặp
-            function removeDuplicateWords(transcript) {
-                // Tách các từ và loại bỏ từ trùng lặp liên tiếp
-                const words = transcript.split(' ');
-                const result = [];
-                
-                for (let i = 0; i < words.length; i++) {
-                    // Chỉ thêm từ nếu nó không giống từ ngay trước đó
-                    if (words[i] !== words[i - 1]) {
-                        result.push(words[i]);
-                    }
-                }
-                
-                return result.join(' ');
-            }
-            
-            // Xử lý kết quả nhận dạng giọng nói (ĐÃ SỬA LỖI LẶP VĂN BẢN)
-            recognition.onresult = (event) => {
-                let finalTranscript = '';
-
-                for (let i = 0; i < event.results.length; i++) {
-                    const result = event.results[i];
-                    const transcript = removeDuplicateWords(result[0].transcript);
-    if (result.isFinal) {
-        const finalTranscript = transcript.trim();
-        if (finalTranscript) {
-            const para = document.createElement('p');
-            para.textContent = finalTranscript;
-            document.getElementById('storageArea').appendChild(para);
-            textOutput.value += (textOutput.value ? '\n' : '') + finalTranscript;
+    document.addEventListener('DOMContentLoaded', () => {
+        // Element references
+        const microphoneBtn = document.getElementById('microphoneBtn');
+        const textOutput = document.getElementById('textOutput');
+        const status = document.getElementById('status');
+        const copyBtn = document.getElementById('copyBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const shareBtn = document.getElementById('shareBtn');
+        const mergeBtn = document.getElementById('mergeBtn');
+        const storageArea = document.getElementById('storageArea');
+        const infoBox = document.getElementById('infoBox');
+        const infoBoxHeading = infoBox.querySelector('h3');
+        const soundWaves = document.querySelectorAll('.sound-wave');
+        
+        // SpeechRecognition setup
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            status.innerHTML = '<span class="recording-status">Trình duyệt của bạn không hỗ trợ Web Speech API. Vui lòng sử dụng Chrome.</span>';
+            microphoneBtn.disabled = true;
+            return;
         }
-    }
 
+        const recognition = new SpeechRecognition();
+        recognition.continuous = true; // Keep listening even after a pause
+        recognition.interimResults = true; // Show results as they are being spoken
+        recognition.lang = 'vi-VN';
 
-                    if (result.isFinal) {
-                        finalTranscript = transcript;
-                    }
-                }
+        let isRecording = false;
+        let final_transcript = '';
 
-                textOutput.value = finalTranscript.trim();
-                textOutput.scrollTop = textOutput.scrollHeight;
-            };
+        // Function to handle microphone button click
+        microphoneBtn.addEventListener('click', () => {
+            if (isRecording) {
+                recognition.stop();
+                // UI changes are handled in recognition.onend
+            } else {
+                final_transcript = ''; // Clear previous session's final transcript
+                textOutput.value = ''; // Clear the main text area for new recording
+                recognition.start();
+            }
+        });
 
+        recognition.onstart = () => {
+            isRecording = true;
+            microphoneBtn.classList.add('recording');
+            soundWaves.forEach(wave => wave.classList.add('recording'));
+            status.innerHTML = '<span class="recording-status">Đang ghi âm...</span>';
+        };
+
+        recognition.onend = () => {
+            isRecording = false;
+            microphoneBtn.classList.remove('recording');
+            soundWaves.forEach(wave => wave.classList.remove('recording'));
+            status.innerHTML = 'Đã dừng ghi âm. Nhấn micro để bắt đầu lại.';
             
-            recognition.onerror = (event) => {
-                console.error('Lỗi nhận dạng giọng nói:', event.error);
-                
-                if (event.error === 'not-allowed' || event.error === 'aborted') {
-                    status.innerHTML = `
-                        <div class="permission-error">
-                            <strong><i class="fas fa-exclamation-circle"></i> Lỗi: Microphone không được cấp quyền. Vui lòng:</strong>
-                            <ul>
-                                <li>Nhấn vào biểu tượng ổ khóa trên thanh địa chỉ</li>
-                                <li>Chọn "Cài đặt trang web" hoặc "Quyền"</li>
-                                <li>Cho phép quyền Microphone</li>
-                                <li>Tải lại trang</li>
-                            </ul>
-                        </div>
-                    `;
-                    // Dừng ghi âm và reset trạng thái
-                    isRecording = false;
-                    recognitionStarted = false;
-                    microphoneBtn.classList.remove('recording');
-                    soundWaves.forEach(wave => wave.classList.remove('recording'));
-                    microphoneBtn.disabled = true;
+            // Save the final transcript to the storage area
+            const currentText = textOutput.value.trim(); // Use textOutput's value which includes interim results
+            if (currentText) {
+                const para = document.createElement('p');
+                para.textContent = currentText;
+                storageArea.appendChild(para);
+            }
+        };
+        
+        recognition.onresult = (event) => {
+            let interim_transcript = '';
+            final_transcript = ''; // Reset final transcript for recalculation
+            for (let i = 0; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    final_transcript += event.results[i][0].transcript;
                 } else {
-                    status.innerHTML = `<span class="recording-status">Lỗi: ${event.error}</span>`;
-                    
-                    // Thử khởi động lại nếu đang trong trạng thái ghi âm
-                    if (isRecording && recognitionStarted) {
-                        try {
-                            recognition.start();
-                        } catch (error) {
-                            console.error('Lỗi khi khởi động lại:', error);
-                        }
-                    }
+                    interim_transcript += event.results[i][0].transcript;
                 }
-            };
-            
-            recognition.onend = () => {
-                if (isRecording && !ignoreOnend && recognitionStarted) {
-                    // Tự động bắt đầu lại nếu đang trong chế độ ghi và không phải do người dùng dừng
-                    try {
-                        recognition.start();
-                    } catch (error) {
-                        console.error('Lỗi khi tự động bắt đầu lại:', error);
-                        status.innerHTML = '<span class="recording-status">Lỗi: Không thể tiếp tục ghi âm.</span>';
-                        isRecording = false;
-                        recognitionStarted = false;
-                        microphoneBtn.classList.remove('recording');
-                        soundWaves.forEach(wave => wave.classList.remove('recording'));
-                    }
-                }
-            };
-            
-            // Xử lý nút Copy
-            copyBtn.addEventListener('click', () => {
-                textOutput.select();
-                document.execCommand('copy');
-                
-                // Hiệu ứng feedback
+            }
+            textOutput.value = final_transcript + interim_transcript;
+            textOutput.scrollTop = textOutput.scrollHeight;
+        };
+        
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            status.innerHTML = `<span class="recording-status">Lỗi: ${event.error}. Vui lòng kiểm tra quyền micro.</span>`;
+            isRecording = false;
+            microphoneBtn.classList.remove('recording');
+            soundWaves.forEach(wave => wave.classList.remove('recording'));
+        };
+
+        // Action Buttons
+        copyBtn.addEventListener('click', () => {
+            if (!textOutput.value) return;
+            navigator.clipboard.writeText(textOutput.value).then(() => {
                 const originalText = copyBtn.innerHTML;
                 copyBtn.innerHTML = '<i class="fas fa-check"></i> Đã sao chép!';
-                setTimeout(() => {
-                    copyBtn.innerHTML = originalText;
-                }, 2000);
-            });
-            
-            // Xử lý nút Tải xuống
-            downloadBtn.addEventListener('click', () => {
-                const text = textOutput.value;
-                if (!text.trim()) {
-                    alert('Vui lòng nhập văn bản trước khi tải xuống!');
-                    return;
-                }
-                
-                const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-                const url = URL.createObjectURL(blob);
-                
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'van-ban-chuyen-doi.txt';
-                document.body.appendChild(a);
-                a.click();
-                
-                // Dọn dẹp
-                setTimeout(() => {
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(url);
-                    
-                    // Hiệu ứng feedback
-                    const originalText = downloadBtn.innerHTML;
-                    downloadBtn.innerHTML = '<i class="fas fa-check"></i> Đã tải xuống!';
-                    setTimeout(() => {
-                        downloadBtn.innerHTML = originalText;
-                    }, 2000);
-                }, 100);
-            });
-            
-            // Xử lý nút Xóa
-            clearBtn.addEventListener('click', () => {
-                if (textOutput.value.trim() === '' || confirm('Bạn có chắc muốn xóa toàn bộ văn bản?')) {
-                    textOutput.value = '';
-                    lastFinalTranscript = '';
-                    interimTranscript = '';
-                    lastProcessedIndex = 0;
-                }
-            });
-
-            // Xử lý nút Chia sẻ
-            const shareBtn = document.getElementById('shareBtn');
-            shareBtn.addEventListener('click', async () => {
-                const text = textOutput.value.trim();
-                if (!text) {
-                    alert('Không có văn bản để chia sẻ!');
-                    return;
-                }
-
-                if (navigator.share) {
-                    try {
-                        await navigator.share({
-                            
-                            text: text
-                        });
-                    } catch (err) {
-                        console.error('Lỗi khi chia sẻ:', err);
-                    }
-                } else {
-                    alert('Trình duyệt không hỗ trợ chia sẻ tự động. Vui lòng sao chép thủ công.');
-                }
-            });
-
-            // Toggle function for info box
-            infoBoxHeading.addEventListener('click', () => {
-                infoBox.classList.toggle('active');
+                setTimeout(() => { copyBtn.innerHTML = originalText; }, 2000);
             });
         });
+
+        downloadBtn.addEventListener('click', () => {
+            const text = textOutput.value.trim();
+            if (!text) return alert('Không có văn bản để tải xuống.');
+            
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'van-ban-chuyen-doi.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        clearBtn.addEventListener('click', () => {
+            if (confirm('Bạn có chắc muốn xóa văn bản ở ô chính?')) {
+                textOutput.value = '';
+                final_transcript = '';
+            }
+        });
+
+        shareBtn.addEventListener('click', () => {
+            const text = textOutput.value.trim();
+            if (!text) return alert('Không có văn bản để chia sẻ.');
+            if (navigator.share) {
+                navigator.share({ text: text }).catch(err => console.error('Share error:', err));
+            } else {
+                alert('Trình duyệt không hỗ trợ tính năng này. Vui lòng sao chép thủ công.');
+            }
+        });
+
+        mergeBtn.addEventListener('click', () => {
+            const allParas = storageArea.querySelectorAll('p');
+            if (allParas.length === 0) return alert('Không có đoạn nào đã lưu để gộp.');
+            let mergedText = '';
+            allParas.forEach(p => {
+                mergedText += p.textContent + '\n\n'; // Add two newlines for paragraph breaks
+            });
+            textOutput.value = mergedText.trim();
+            textOutput.scrollTop = textOutput.scrollHeight;
+        });
+
+        // Toggle for info box
+        infoBoxHeading.addEventListener('click', () => {
+            infoBox.classList.toggle('active');
+        });
+    });
     </script>
 </body>
 </html>
-
-
-<script>
-document.getElementById('mergeBtn')?.addEventListener('click', () => {
-  const allParas = document.querySelectorAll('#storageArea p');
-  let mergedText = '';
-  allParas.forEach(p => {
-    mergedText += p.textContent + '\n';
-  });
-  textOutput.value = mergedText.trim();
-  textOutput.scrollTop = textOutput.scrollHeight;
-});
-</script>
